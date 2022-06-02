@@ -103,8 +103,8 @@ jobs:
 
       - name: UnZipping Tar File 
         run: | 
-          ls -l ~/artifact-download
           cd ~/artifact-download
+          mkdir -p morphir-elm-artifact
           tar -zxvf $(ls *.tgz)  -C ~/artifact-download/morphir-elm-artifact
           ls -l ~/artifact-download/morphir-elm-artifact
         
@@ -119,4 +119,4 @@ jobs:
         if: env.NPM_TOKEN != 0
         with:
           token: ${{ env.NPM_TOKEN }}
-          package: ~/artifact-download/morphir-elm-artifact
+          package: ~/artifact-download/morphir-elm-artifact/package
