@@ -104,7 +104,7 @@ jobs:
       - name: UnZipping Tar File 
         run: | 
           mkdir -p ~/artifact-download/morphir-elm-artifact
-          tar -zxvf $(ls ~/artifact-download*.tgz)  -C ~/artifact-download/morphir-elm-artifact
+          tar -zxvf $(ls ~/artifact-download/*.tgz)  -C ~/artifact-download/morphir-elm-artifact
           ls -l ~/artifact-download/morphir-elm-artifact
         
       - name: Publish Elm (as needed)
