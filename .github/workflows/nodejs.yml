@@ -105,7 +105,7 @@ jobs:
           path: ~/artifact-download/
 
       - name: UnZipping Tar File 
-        run: tar -xvf morphir-elm-artifact -C ~/artifact-download
+        run: tar -xvf ~/artifact/morphir-elm-artifact -C ~/artifact-download
         
       - name: Publish Elm (as needed)
         uses: dillonkearns/elm-publish-action@1.1.0

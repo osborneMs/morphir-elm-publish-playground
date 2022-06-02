@@ -1,6 +1,6 @@
 {
-  "name": "morphir-elm",
-  "version": "2.50.2",
+  "name": "morphir-elm-publish-playground-publish-playground-publish-playground",
+  "version": "1.0.0",
   "description": "Elm bindings for Morphir",
   "scripts": {
     "clean": "gulp clean",
@@ -12,26 +12,26 @@
     "try-morphir-live": "cd cli && elm-live src/Morphir/Web/TryMorphir.elm",
     "multiary-decision-tree-live": "cd cli && elm-live src/Morphir/Web/MultiaryDecisionTreeTest.elm --start-page=./web/treeIndex.html -- --output=treeStuff.js",
     "ncc-morphir": "ncc build cli/morphir.js -o dist/morphir",
-    "ncc-morphir-server": "ncc build cli/morphir-elm-develop.js -o dist/morphir-server",
+    "ncc-morphir-server": "ncc build cli/morphir-elm-publish-playground-publish-playground-develop.js -o dist/morphir-server",
     "build": "gulp && npm run ncc-morphir && npm run ncc-morphir-server && npx jest -- cli.test.ts",
     "test-coverage": "elm-coverage src/ --open"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Morgan-Stanley/morphir-elm.git"
+    "url": "git+https://github.com/osborneMS/morphir-elm-publish-playground-publish-playground.git"
   },
   "bin": {
-    "morphir-elm": "cli/morphir-elm.js",
+    "morphir-elm-publish-playground-publish-playground": "cli/morphir-elm-publish-playground-publish-playground.js",
     "morphir-dapr": "cli/morphir-dapr.js",
     "morphir": "cli2/lib/morphir.js"
   },
   "files": [
     "cli/cli.js",
-    "cli/morphir-elm.js",
-    "cli/morphir-elm-make.js",
-    "cli/morphir-elm-gen.js",
-    "cli/morphir-elm-develop.js",
-    "cli/morphir-elm-test.js",
+    "cli/morphir-elm-publish-playground-publish-playground.js",
+    "cli/morphir-elm-publish-playground-publish-playground-make.js",
+    "cli/morphir-elm-publish-playground-publish-playground-gen.js",
+    "cli/morphir-elm-publish-playground-publish-playground-develop.js",
+    "cli/morphir-elm-publish-playground-publish-playground-test.js",
     "cli/morphir-dapr.js",
     "cli/Morphir.Elm.CLI.js",
     "cli/Morphir.Elm.DaprCLI.js",
@@ -54,9 +54,9 @@
   "author": "MorganStanley",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/Morgan-Stanley/morphir-elm/issues"
+    "url": "https://github.com/osborneMS/morphir-elm-publish-playground-publish-playground-publish-playground/issues"
   },
-  "homepage": "https://github.com/Morgan-Stanley/morphir-elm#readme",
+  "homepage": "https://github.com/osborneMS/morphir-elm-publish-playground-publish-playground-publish-playground#readme",
   "devDependencies": {
     "@types/jest": "^27.4.0",
     "@types/mocha": "^9.0.0",
