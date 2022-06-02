@@ -95,9 +95,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      # - name: Create folder for extracted files 
-      #   run: mkdir ~/artifact-download
-
       - name: Download Artifact
         uses: actions/download-artifact@v3
         with:
@@ -107,7 +104,9 @@ jobs:
       - name: UnZipping Tar File 
         run: | 
           ls -l ~/artifact-download
-          tar -xvf ~/artifact-download/$(ls *.tgz) -C ~/artifact-download
+          cd ~/artifact-download
+          tar -zxvf $(ls *.tgz)  -C ~/artifact-download/morphir-elm-artifact
+          ls -l ~/artifact-download/morphir-elm-artifact
         
       # - name: Publish Elm (as needed)
       #   uses: dillonkearns/elm-publish-action@1.1.0
