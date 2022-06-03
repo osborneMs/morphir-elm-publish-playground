@@ -106,6 +106,9 @@ jobs:
           mkdir -p ~/artifact-download/morphir-elm-artifact
           tar -zxvf $(ls ~/artifact-download/*.tgz)  -C ~/artifact-download/morphir-elm-artifact
           ls -l ~/artifact-download/morphir-elm-artifact
+
+      - name: Install
+        run: npm install
         
       - name: Publish Elm (as needed)
         uses: dillonkearns/elm-publish-action@1.1.0
