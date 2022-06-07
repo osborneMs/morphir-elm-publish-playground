@@ -118,6 +118,8 @@ jobs:
 
       - name: Publish (as needed)
         uses: JS-DevTools/npm-publish@v1
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         if: env.NPM_TOKEN != 0
         with:
           token: ${{ env.NPM_TOKEN }}
