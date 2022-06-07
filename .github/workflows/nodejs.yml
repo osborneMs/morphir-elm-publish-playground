@@ -116,17 +116,13 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-elm: ./node_modules/.bin/elm 
 
-      # Use this GitHub Action
-      - name: Check package version
-        uses: technote-space/package-version-check-action@v1
-        with:
-          COMMIT_DISABLED: 1
-
       - name: Publish (as needed)
         uses: JS-DevTools/npm-publish@v1
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        if: env.NPM_TOKEN != 0
         with:
           token: ${{ env.NPM_TOKEN }}
           package: ./package.json
+
+      - name: directory listing 
+        run: ls -l ./
