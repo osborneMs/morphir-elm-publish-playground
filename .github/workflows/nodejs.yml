@@ -122,3 +122,4 @@ jobs:
         with:
           token: ${{ env.NPM_TOKEN }}
           package: ./artifact-download/package/package.json
+          dry-run: true
