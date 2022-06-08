@@ -73,7 +73,6 @@ jobs:
         os: [ ubuntu-latest ]
 
     env:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       NPM_TOKEN: ${{ secrets.MORPHIR_TEST_PUBLISH }}
 
     steps:
