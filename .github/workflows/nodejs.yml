@@ -85,7 +85,7 @@ jobs:
         os: [ ubuntu-latest ]
 
     env:
-      NPM_TOKEN: ${{ secrets.MORPHIR_TEST_PUBLISH }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     steps:
       - uses: actions/checkout@v2
@@ -99,13 +99,13 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: morphir-elm-artifact
-          path: ~/artifact-download/
+          path:  ./artifact-download/
 
       - name: UnZipping Tar File 
         run: | 
-          mkdir -p ~/artifact-download/morphir-elm-artifact
-          tar -zxvf $(ls ~/artifact-download/*.tgz)  -C ~/artifact-download/morphir-elm-artifact
-          ls -l ~/artifact-download/morphir-elm-artifact
+          mkdir -p  ./artifact-download/
+          tar -zxvf $(ls  ./artifact-download/*.tgz)  -C  ./artifact-download/
+          ls -l  ./artifact-download/
 
       - name: Install
         run: npm install
@@ -121,4 +121,4 @@ jobs:
         if: env.NPM_TOKEN != 0
         with:
           token: ${{ env.NPM_TOKEN }}
-          package: ./package.json
+          package: ./artifact-download/package/package.json
