@@ -105,4 +105,4 @@ jobs:
         if: env.NPM_TOKEN != 0
         with:
           token: ${{ env.NPM_TOKEN }}
-          package: /home/runner/artifact-download/morphir-elm-artifact/package.json
+          package: /home/runner/artifact-download/morphir-elm-artifact/package/package.json
