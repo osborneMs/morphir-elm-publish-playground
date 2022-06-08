@@ -70,7 +70,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: morphir-elm-artifact
-          path: ./*.tgz
+          path: ~/*.tgz
           if-no-files-found: error
           retention-days: 0
 
@@ -99,13 +99,13 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: morphir-elm-artifact
-          path:  ./artifact-download/
+          path: ~/artifact-download/
 
       - name: UnZipping Tar File 
         run: | 
-          mkdir -p  ./artifact-download/
-          tar -zxvf $(ls  ./artifact-download/*.tgz)  -C  ./artifact-download/
-          ls -l  ./artifact-download/
+          mkdir -p ~/artifact-download/morphir-elm-artifact
+          tar -zxvf $(ls ~/artifact-download/*.tgz)  -C ~/artifact-download/morphir-elm-artifact
+          ls -l ~/artifact-download/morphir-elm-artifact
 
       - name: Install
         run: npm install
@@ -114,12 +114,11 @@ jobs:
         uses: dillonkearns/elm-publish-action@1.1.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-elm: ./node_modules/.bin/elm 
+          path-to-elm: ~/node_modules/.bin/elm 
 
       - name: Publish (as needed)
         uses: JS-DevTools/npm-publish@v1
         if: env.NPM_TOKEN != 0
         with:
           token: ${{ env.NPM_TOKEN }}
-          package: ./artifact-download/package/package.json
-          dry-run: true
+          package: /home/runner/artifact-download/morphir-elm-artifact/package.json
