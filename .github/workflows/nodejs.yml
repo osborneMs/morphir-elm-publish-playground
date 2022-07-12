@@ -45,82 +45,77 @@ jobs:
 
       - name: Download dependencies
         run: npm ci
-
-      - name: Publish if version has been updated
-        uses: pascalgn/npm-publish-action@1.3.9
-        with: # All of theses inputs are optional
-          create_tag: "true"
-          workspace: "."
-          publish_command: "npm"
-          publish_args: "--non-interactive"
-        env: # More info about the environment variables in the README
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this as is, it's automatically generated
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }} # You need to set this in your repo settings
       
-      # - name: Build
-      #   run: npm run build --if-present
+      - name: Build
+        run: npm run build --if-present
 
-      # - name: Zip Package For Test
-      #   run: npm pack 
+      - name: Zip Package For Test
+        run: npm pack 
 
-      # - name: Install Zip Package
-      #   run: npm install $(ls *.tgz)
+      - name: Install Zip Package
+        run: npm install $(ls *.tgz)
 
-      # - name: Link To Local Package 
-      #   run: npm link 
+      - name: Link To Local Package 
+        run: npm link 
 
-      # - name: Running Test
-      #   run: npm test
+      - name: Running Test
+        run: npm test
 
-      # - name: Check Morphir Cmd 
-      #   run: |
-      #     cd tests-integration/reference-model
-      #     morphir -v 
+      - name: Check Morphir Cmd 
+        run: |
+          cd tests-integration/reference-model
+          morphir -v 
 
-      # - name: Upload to Artifact for Easier Publish 
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: morphir-elm
-      #     path: ./*.tgz
-      #     if-no-files-found: error
-      #     retention-days: 0
+      - name: Upload to Artifact for Easier Publish 
+        uses: actions/upload-artifact@v3
+        with:
+          name: morphir-elm
+          path: ./*.tgz
+          if-no-files-found: error
+          retention-days: 0
 
   # publish package 
-  # publish:
-  #   name: Publish NPM Package
-  #   needs: [ build ]
-  #   runs-on: ${{ matrix.os }}
-  #   strategy:
-  #     matrix:
-  #       node-version: [16.x]
-  #       os: [ ubuntu-latest ]
+  publish:
+    name: Publish NPM Package
+    needs: [ build ]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node-version: [16.x]
+        os: [ ubuntu-latest ]
 
-  #   env:
-  #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  #   steps:
-  #     - name: Download Artifact
-  #       uses: actions/download-artifact@v2
-  #       with:
-  #         name: morphir-elm
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: morphir-elm
 
-  #     - uses: actions/checkout@v2
-  #     - name: Setup Node.js ${{ matrix.node-version }}
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
+      - uses: actions/checkout@v2
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-  #     - name: Install Zip Package
-  #       run: npm install $(ls *.tgz)
+      - name: Install Zip Package
+        run: npm install $(ls *.tgz)
         
-  #     - name: Publish Elm (as needed)
-  #       uses: dillonkearns/elm-publish-action@1.1.0
-  #       with:
-  #         github-token: ${{ secrets.GITHUB_TOKEN }}
-  #         path-to-elm: ./node_modules/.bin/elm 
+      # - name: Publish Elm (as needed)
+      #   uses: dillonkearns/elm-publish-action@1.1.0
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     path-to-elm: ./node_modules/.bin/elm 
 
-  #     - name: Publish (as needed)
-  #       uses: JS-DevTools/npm-publish@v1
-  #       if: env.NPM_TOKEN != 0
-  #       with:
-  #         token: ${{ env.NPM_TOKEN }}
+      - name: Publish Package
+        uses: novom/publish-with-tag-action@v1.0.4
+        if: env.NPM_TOKEN != 0
+        env:
+          NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
+      
+      - name: Publish (as needed)
+        uses: JS-DevTools/npm-publish@v1
+        if: env.NPM_TOKEN != 0
+        with:
+          token: ${{ env.NPM_TOKEN }}
