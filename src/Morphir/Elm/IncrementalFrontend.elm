@@ -171,26 +171,6 @@ applyFileChanges fileChanges opts maybeExposedModules repo =
             applyChangesByOrder fileChanges opts (List.map Tuple.first fileChanges.insertsAndUpdates |> Set.fromList) repo
 
 
-{-|
-
-    read all imports into list
-    read all exposed modules into a list
-
-    used module ==>
-        != exposed modules
-        != imported
-
-
-    exposed Modules / ParsedModule imports
-
-    remove form ordered file changes
-
--}
-removeUnusedModules : OrderedFileChanges -> Set Path -> ParsedModule -> OrderedFileChanges
-removeUnusedModules orderedFileChanges exposedModule parsedModule =
-    Debug.todo "implement"
-
-
 applyChangesByOrder : OrderedFileChanges -> Frontend.Options -> Set Path -> Repo -> Result Errors Repo
 applyChangesByOrder orderedFileChanges opts exposedModules repo =
     let
