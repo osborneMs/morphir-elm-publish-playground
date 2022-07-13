@@ -90,7 +90,7 @@ jobs:
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@v2
-        with:
+        with: 
           name: morphir-elm
 
       - uses: actions/checkout@v2
