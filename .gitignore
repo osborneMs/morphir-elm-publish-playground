@@ -16,4 +16,4 @@ lib
 Morphir.Elm.CLI.js
 docs.json
 /.coverage/
-package-lock.json
+./package-lock.json
