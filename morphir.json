@@ -1,0 +1,16 @@
+{
+    "name": "Morphir.IR",
+    "sourceDirectory": "src",
+    "exposedModules": [
+        "Name",
+        "Path",
+        "QName",
+        "FQName",
+        "AccessControlled",
+        "Type",
+        "Value",
+        "Module",
+        "Package",
+        "Distribution"
+    ]
+}
