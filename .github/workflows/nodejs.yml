@@ -74,7 +74,7 @@ jobs:
         os: [ ubuntu-latest ]
 
     env:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      NPM_TOKEN: ${{ secrets.MORPHIR_TEST_PUBLISH }}
 
     steps:
       - uses: actions/checkout@v2
@@ -96,7 +96,7 @@ jobs:
         run: npm install
 
       - name: Auto release
-        if: env.NPM_TOKEN != 0
+        if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci') && env.NPM_TOKEN != 0"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
