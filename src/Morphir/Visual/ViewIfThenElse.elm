@@ -1,0 +1,73 @@
+module Morphir.Visual.ViewIfThenElse exposing (view)
+
+import Element exposing (Element)
+import Morphir.IR.Literal exposing (Literal(..))
+import Morphir.IR.Value as Value exposing (TypedValue, Value)
+import Morphir.Visual.Components.DecisionTree as DecisionTree exposing (LeftOrRight(..))
+import Morphir.Visual.Config as Config exposing (Config)
+import Morphir.Visual.EnrichedValue exposing (EnrichedValue)
+import Dict
+
+
+view : Config msg -> ( Config msg -> EnrichedValue -> Element msg) -> EnrichedValue -> Element msg
+view config viewValue value =
+    DecisionTree.layout config viewValue (valueToTree config True value)
+
+
+valueToTree : Config msg -> Bool -> EnrichedValue -> DecisionTree.Node
+valueToTree config doEval value =
+    case value of
+        Value.IfThenElse _ condition thenBranch elseBranch ->
+            let
+                pathTaken : Bool
+                pathTaken = not (config.state.highlightState == Just Config.Unmatched || config.state.highlightState == Just Config.Default)
+                result =
+                    if doEval && pathTaken then
+                        case config |> Config.evaluate (Value.toRawValue condition) of
+                            Ok (Value.Literal _ (BoolLiteral v)) ->
+                                Just v
+
+                            _ ->
+                                Nothing
+
+                    else
+                        Nothing
+            in
+            DecisionTree.Branch
+                { condition = condition
+                , conditionValue = result
+                , thenBranch = valueToTree config (result == Just True) thenBranch
+                , elseBranch = valueToTree config (result == Just False) elseBranch
+                }
+
+        Value.LetDefinition _ defName defValue inValue ->
+            let
+                currentState =
+                    config.state
+
+                newState =
+                    { currentState
+                        | variables =
+                            config
+                                |> Config.evaluate
+                                    (defValue
+                                        |> Value.mapDefinitionAttributes identity (always ())
+                                        |> Value.definitionToValue
+                                    )
+                                |> Result.map
+                                    (\evaluatedDefValue ->
+                                        currentState.variables
+                                            |> Dict.insert defName evaluatedDefValue
+                                    )
+                                |> Result.withDefault currentState.variables
+                    }
+            in
+            valueToTree
+                { config
+                    | state = newState
+                }
+                doEval
+                inValue
+
+        _ ->
+            DecisionTree.Leaf value
