@@ -1,5 +1,8 @@
 {
-    "author": "osborne Sapaty <osborne.sapaty@morganstanley.com>",
+    "author": {
+        "name": "osborne sapaty",
+        "email": "osborne.sapaty@morganstanley.com"
+    },
     "plugins": ["npm"],
     "onlyPublishWithReleaseLabel": true
 }
