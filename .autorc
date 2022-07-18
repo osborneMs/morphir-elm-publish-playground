@@ -1,0 +1,9 @@
+{
+  "author": {
+    "name": "osborne sapaty",
+    "email": "osborne.sapaty@morganstanley.com"
+  },
+  "plugins": ["npm"],
+  "onlyPublishWithReleaseLabel": true
+
+}

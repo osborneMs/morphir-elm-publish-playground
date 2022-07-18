@@ -89,11 +89,5 @@
     "log-timestamp": "^0.3.0",
     "prettier": "^2.4.1",
     "vis-network": "^9.1.2"
-  },
-  "auto": {
-    "plugins": [
-      "npm"
-    ],
-    "onlyPublishWithReleaseLabel": true
   }
 }
