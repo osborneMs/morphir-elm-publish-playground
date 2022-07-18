@@ -74,7 +74,7 @@ jobs:
         os: [ ubuntu-latest ]
 
     env:
-      NPM_TOKEN: ${{ secrets.MORPHIR_TEST_PUBLISH }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     steps:
       - uses: actions/checkout@v2
@@ -92,8 +92,6 @@ jobs:
           mkdir -p ~/artifact-download/morphir-elm-artifact
           tar -zxvf $(ls ~/artifact-download/*.tgz)  -C ~/artifact-download/morphir-elm-artifact
           ls -l ~/artifact-download/morphir-elm-artifact
-      - name: Install
-        run: npm install
 
       - name: Auto release
         if: env.NPM_TOKEN != 0
@@ -103,5 +101,4 @@ jobs:
           NODE_AUTH_TOKEN: env.NPM_TOKEN
         run: |
           npm ci
-          git fetch --tags
           npx auto shipit
