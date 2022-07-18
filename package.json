@@ -92,9 +92,7 @@
   },
   "auto": {
     "plugins": [
-      "npm",
-      "all-contributors",
-      "released"
+      "npm"
     ],
     "onlyPublishWithReleaseLabel": true
   }
