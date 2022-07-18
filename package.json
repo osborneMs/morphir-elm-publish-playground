@@ -1,6 +1,6 @@
 {
   "name": "morphir-elm-publish-playground",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "Elm bindings for Morphir",
   "scripts": {
     "clean": "gulp clean",
@@ -89,11 +89,5 @@
     "log-timestamp": "^0.3.0",
     "prettier": "^2.4.1",
     "vis-network": "^9.1.2"
-  },
-  "auto": {
-    "plugins": [
-      "npm"
-    ],
-    "onlyPublishWithReleaseLabel": true
   }
 }
