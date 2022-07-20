@@ -1,3 +1,15 @@
+# v1.7.1 (Wed Jul 20 2022)
+
+#### 🐛 Bug Fix
+
+- Publishing test [#23](https://github.com/osborneMs/morphir-elm-publish-playground/pull/23) ([@osborneMs](https://github.com/osborneMs))
+
+#### Authors: 1
+
+- Sapaty Osborne ([@osborneMs](https://github.com/osborneMs))
+
+---
+
 ## [0.5.2](https://github.com/Morgan-Stanley/morphir-elm/compare/v0.4.1...v0.5.2) (2020-05-28)
 
 
