@@ -1,5 +1,5 @@
 {
-  "name": "@osbornee/morphir-elm-publish-playground",
+  "name": "morphir-elm-publish-playground",
   "version": "1.8.0",
   "description": "Elm bindings for Morphir",
   "scripts": {
