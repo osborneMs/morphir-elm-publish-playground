@@ -73,7 +73,7 @@ jobs:
         node-version: [16.x]
         os: [ ubuntu-latest ]
     env:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      NPM_TOKEN: ${{ secrets.MORPHIR_TEST_PUBLISH }}
 
 
     steps:
@@ -97,8 +97,8 @@ jobs:
         if: env.NPM_TOKEN != 0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: env.NPM_TOKEN
-          NODE_AUTH_TOKEN: env.NPM_TOKEN
+          NPM_TOKEN: ${{ secrets.MORPHIR_TEST_PUBLISH }}
+          NODE_AUTH_TOKEN: ${{ secrets.MORPHIR_TEST_PUBLISH }}
         run: |
           npm ci
           git fetch --tags
