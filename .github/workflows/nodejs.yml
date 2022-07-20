@@ -75,26 +75,28 @@ jobs:
     env:
       NPM_TOKEN: ${{ secrets.MORPHIR_TEST_PUBLISH }}
 
-
     steps:
       - uses: actions/checkout@v2
+
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+
       - name: Download Artifact
         uses: actions/download-artifact@v3
         with:
           name: morphir-elm-artifact
           path: ~/artifact-download/
-      - name: UnZipping Tar File 
+
+      - name: UnZipping Tar File
         run: | 
           mkdir -p ~/artifact-download/morphir-elm-artifact
           tar -zxvf $(ls ~/artifact-download/*.tgz)  -C ~/artifact-download/morphir-elm-artifact
           ls -l ~/artifact-download/morphir-elm-artifact
 
       - name: Auto release
-        if: env.NPM_TOKEN != 0
+        if: "env.NPM_TOKEN != 0 && !contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'ci skip')"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.MORPHIR_TEST_PUBLISH }}
@@ -102,4 +104,4 @@ jobs:
         run: |
           npm ci
           git fetch --tags
-          npx auto shipit
+          npx auto shipit -vv
