@@ -102,6 +102,4 @@ jobs:
           NPM_TOKEN: ${{ secrets.MORPHIR_TEST_PUBLISH }}
           NODE_AUTH_TOKEN: ${{ secrets.MORPHIR_TEST_PUBLISH }}
         run: |
-          ls -l /home/runner/artifact-download/morphir-elm-artifact/package/ 
-          ls -l /home/runner/work/morphir-elm-publish-playground/morphir-elm-publish-playground
-          
+          cp -R /home/runner/artifact-download/morphir-elm-artifact/package/ /home/runner/work/morphir-elm-publish-playground/morphir-elm-publish-playground
