@@ -102,7 +102,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.MORPHIR_TEST_PUBLISH }}
           NODE_AUTH_TOKEN: ${{ secrets.MORPHIR_TEST_PUBLISH }}
         run: |
-          ll /home/runner/artifact-download/morphir-elm-artifact/package/ 
-          ll /home/runner/work/morphir-elm-publish-playground/morphir-elm-publish-playground
+          ls -l /home/runner/artifact-download/morphir-elm-artifact/package/ 
+          ls -l /home/runner/work/morphir-elm-publish-playground/morphir-elm-publish-playground
           git fetch --tags
           npx auto shipit -vv
