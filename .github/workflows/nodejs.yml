@@ -104,5 +104,4 @@ jobs:
         run: |
           ls -l /home/runner/artifact-download/morphir-elm-artifact/package/ 
           ls -l /home/runner/work/morphir-elm-publish-playground/morphir-elm-publish-playground
-          git fetch --tags
-          npx auto shipit -vv
+          
