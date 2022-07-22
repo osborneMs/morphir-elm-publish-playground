@@ -102,6 +102,6 @@ jobs:
           NPM_TOKEN: ${{ secrets.MORPHIR_TEST_PUBLISH }}
           NODE_AUTH_TOKEN: ${{ secrets.MORPHIR_TEST_PUBLISH }}
         run: |
-          npm ci
+          cd  /home/runner/artifact-download/morphir-elm-artifact/package
           git fetch --tags
           npx auto shipit -vv
